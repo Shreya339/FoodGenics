@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "987419242057",
+    "firebase_url": "https://foodgenics-8973c-default-rtdb.firebaseio.com",
+    "project_id": "foodgenics-8973c",
+    "storage_bucket": "foodgenics-8973c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987419242057:android:47cc8262a19e0ebdb11998",
+        "android_client_info": {
+          "package_name": "com.example.foodgenicsmain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987419242057-6rb477aa72t2ur7166fg024pg967fvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7Ct4HzfJ9dEKSixe_t0WJgFpQoe8cUYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987419242057-6rb477aa72t2ur7166fg024pg967fvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

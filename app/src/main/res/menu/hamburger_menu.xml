@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+        <item android:id="@+id/nav_home"
+            android:title="Home">
+        </item>
+
+        <item android:id="@+id/nav_ingred"
+            android:title="Home">
+        </item>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+        <item android:id="@+id/nav_set"
+            android:title="Settings">
+        </item>
+
+        <item android:id="@+id/nav_about"
+            android:title="About Us">
+        </item>
+
+        <item android:id="@+id/nav_cont"
+            android:title="Contact Us">
+        </item>
+        <item android:id="@+id/nav_logout"
+            android:title="Logout">
+
+        </item>
+    </group>
+
+</menu>

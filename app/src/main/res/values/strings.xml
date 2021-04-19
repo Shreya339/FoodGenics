@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Foodgenics</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="diseases">
+        <item>None</item>
+        <item>High Blood Pressure</item>
+        <item>Diabetes</item>
+        <item>Both</item>
+
+    </string-array>
+</resources>
