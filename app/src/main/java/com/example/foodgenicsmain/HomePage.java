@@ -56,10 +56,6 @@ public class HomePage extends AppCompatActivity {
                         Intent intent = new Intent(HomePage.this,HomePage.class);
                         startActivity(intent);
                         break;
-                    case R.id.nav_ingred:
-                        Intent intent1 = new Intent(HomePage.this,IngredSearch.class);
-                        startActivity(intent1);
-                        break;
                     case R.id.nav_set:
                         Toast.makeText(HomePage.this,"yeah this is settings",Toast.LENGTH_LONG).show();
                         break;
@@ -80,9 +76,6 @@ public class HomePage extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
-
-        //User user = new User("test","email","both");
-        //FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Database").setValue(user);
 
         adapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, tabLayout.getTabCount());
         viewPager2.setAdapter(adapter);

@@ -104,7 +104,7 @@ public class Register extends AppCompatActivity {
                                     //store in db
                                     User usr = new User(username,email,disease);
                                     Log.i("test :-","after user");
-                                    FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {

@@ -34,6 +34,7 @@ public class firstFragment extends Fragment {
     EditText searchField;
     Button search_btn;
     private DatabaseReference databaseReference;
+    private FirebaseRecyclerAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,46 +89,50 @@ public class firstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Log.i("info","in override");
 
         searchField = view.findViewById(R.id.search_field);
         search_btn = view.findViewById(R.id.search_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Database");
+        String searchText = searchField.getText().toString();
 
         Log.i("info","in override");
 
-        search_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleText();
-            }
-        });
-    }
-    public void handleText() {
-        Log.i("info","in handle");
+        Query query = databaseReference.orderByChild("ingredients").startAt(searchText).endAt(searchText + "\uf8ff");
 
-        String search_word = searchField.getText().toString();
+        Log.i("info",searchText);
 
-        Query query = databaseReference.orderByChild("ingredients").startAt(search_word).endAt(search_word+"\uf8ff");
-        Log.i("info", String.valueOf(query));
-        FirebaseRecyclerOptions<SearchModel> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<SearchModel>().setQuery(query, SearchModel.class).build();
-        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<SearchModel, firstFragment.SearchViewHolder>(firebaseRecyclerOptions) {
+        FirebaseRecyclerOptions<SearchResult> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<SearchResult>().setQuery(query, SearchResult.class).build();
+        adapter = new FirebaseRecyclerAdapter<SearchResult, firstFragment.SearchViewHolder>(firebaseRecyclerOptions) {
+
             @NonNull
             @Override
             public firstFragment.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+                Log.i("info","inside search");
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.list_layout, parent, false);
+
+                return new firstFragment.SearchViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull firstFragment.SearchViewHolder holder, int position, @NonNull SearchModel model) {
+            protected void onBindViewHolder(@NonNull firstFragment.SearchViewHolder holder, int position, @NonNull SearchResult model) {
                 Log.i("info","in adapter");
-                holder.setDefault(model.getSearchResult());
+                holder.setDefault(model.getRecipe_name(),model.getIngredients(),model.getInstructions());
             }
         };
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.startListening();
+
+            }
+        });
+
     }
     public static class SearchViewHolder extends  RecyclerView.ViewHolder{
         View sView;
@@ -137,10 +142,14 @@ public class firstFragment extends Fragment {
             sView = itemView;
         }
 
-        public void setDefault(String i_res){
+        public void setDefault(String resp,String ingredients, String instruc){
             Log.i("set default","in set");
-            TextView ingred = sView.findViewById(R.id.res_name);
-            ingred.setText(i_res);
+            TextView resps = sView.findViewById(R.id.res_name);
+            resps.setText(resp);
+            TextView ingred = sView.findViewById(R.id.ingred);
+            ingred.setText(ingredients);
+            TextView instr  = sView.findViewById(R.id.instruct);
+            instr.setText(instruc);
         }
     }
 }
