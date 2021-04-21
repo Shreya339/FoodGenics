@@ -124,7 +124,7 @@ public class firstFragment extends Fragment {
                     @Override
                     protected void onBindViewHolder(@NonNull firstFragment.SearchViewHolder holder, int position, @NonNull SearchResult model) {
                         Log.i("info","in adapter");
-                        holder.setDefault(model.getRecipe_name(),model.getIngredients(),model.getInstructions());
+                        holder.setDefault(model.getIngredients(),model.getInstructions(),model.getTitle());
                     }
                 };
                 recyclerView.setAdapter(adapter);

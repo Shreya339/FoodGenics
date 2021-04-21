@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ public class SearchAlternative extends AppCompatActivity {
 
     private SearchAltAdapter adapter;
     private List<SearchResult> exampleList=new ArrayList<>();
+    SearchResult item;
 
     DatabaseReference fb= FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Database");
 
@@ -60,8 +62,10 @@ public class SearchAlternative extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String name = ds.child("ingredients").getValue().toString();
-                    SearchResult item = new SearchResult(name);
+                    String ing = ds.child("ingredients").getValue().toString();
+                    String titl = ds.child("title").getValue().toString();
+                    String inst = ds.child("instructions").getValue().toString();
+                    item = new SearchResult(ing,inst,titl);
                     exampleList.add(item);
                 }
                 RecyclerView recyclerView = findViewById(R.id.recyclerView);

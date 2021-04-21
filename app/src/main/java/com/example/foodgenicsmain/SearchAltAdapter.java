@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
 
     private List<SearchResult> exampleList;
     private List<SearchResult> exampleListFull;
+    SearchResult currentItem;
 
     @Override
     public Filter getFilter() {
@@ -27,10 +29,12 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ingred;
+        TextView ingred, respi, instr;
         ViewHolder(View itemView) {
             super(itemView);
             ingred = itemView.findViewById(R.id.ingred);
+            respi = itemView.findViewById(R.id.res_name);
+            instr = itemView.findViewById(R.id.instruct);
         }
     }
     SearchAltAdapter(List<SearchResult> exampleList) {
@@ -45,14 +49,17 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        SearchResult currentItem = exampleList.get(position);
+        currentItem = exampleList.get(position);
         holder.ingred.setText(currentItem.getIngredients());
+        holder.respi.setText(currentItem.getTitle());
+        holder.instr.setText(currentItem.getInstructions());
+        Log.i("instr ",currentItem.getInstructions()+" ");
     }
     @Override
     public int getItemCount() {
         return exampleList.size();
     }
-//logic for searching ingredients
+    //logic for searching ingredients
     private Filter examplefilter= new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {

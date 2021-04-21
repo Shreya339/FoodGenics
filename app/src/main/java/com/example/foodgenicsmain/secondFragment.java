@@ -100,7 +100,7 @@ public class secondFragment extends Fragment {
 
                 Log.i("info",searchText+" ");
 
-                Query query = databaseReference.orderByChild("ingredients").startAt(searchText).endAt(searchText +"\uf8ff");
+                Query query = databaseReference.orderByChild("title").startAt(searchText).endAt(searchText +"\uf8ff");
 
                 Log.i("info",searchText);
 
@@ -119,9 +119,9 @@ public class secondFragment extends Fragment {
 
                     @Override
                     protected void onBindViewHolder(@NonNull secondFragment.SearchViewHolder holder, int position, @NonNull SearchResult model) {
-                        Log.i("get recipie name",model.getRecipe_name()+" ");
-                        Log.i("get ingredients",model.getInstructions()+" ");
-                        holder.setDefault(model.getRecipe_name(),model.getIngredients(),model.getInstructions());
+                        Log.i("get recipie name",model.getTitle()+" ");
+                        Log.i("get ingredients",model.getIngredients()+" ");
+                        holder.setDefault(model.getIngredients(),model.getInstructions(),model.getTitle());
                     }
                 };
                 recyclerView.setAdapter(adapter);
