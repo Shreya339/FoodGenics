@@ -95,39 +95,40 @@ public class firstFragment extends Fragment {
         searchField = view.findViewById(R.id.search_field);
         search_btn = view.findViewById(R.id.search_btn);
         databaseReference = FirebaseDatabase.getInstance().getReference("Database");
-        String searchText = searchField.getText().toString();
-
-        Log.i("info","in override");
-
-        Query query = databaseReference.orderByChild("ingredients").startAt(searchText).endAt(searchText + "\uf8ff");
-
-        Log.i("info",searchText);
-
-        FirebaseRecyclerOptions<SearchResult> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<SearchResult>().setQuery(query, SearchResult.class).build();
-        adapter = new FirebaseRecyclerAdapter<SearchResult, firstFragment.SearchViewHolder>(firebaseRecyclerOptions) {
-
-            @NonNull
-            @Override
-            public firstFragment.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                Log.i("info","inside search");
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.list_layout, parent, false);
-
-                return new firstFragment.SearchViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull firstFragment.SearchViewHolder holder, int position, @NonNull SearchResult model) {
-                Log.i("info","in adapter");
-                holder.setDefault(model.getRecipe_name(),model.getIngredients(),model.getInstructions());
-            }
-        };
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String searchText = searchField.getText().toString();
+
+                Log.i("info",searchText+"null"+searchField);
+
+                Query query = databaseReference.orderByChild("ingredients").startAt(searchText).endAt(searchText +"\uf8ff");
+                //Query query = databaseReference.orderByChild("ingredients").equalTo(searchText);
+
+                Log.i("info",searchText);
+
+                FirebaseRecyclerOptions<SearchResult> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<SearchResult>().setQuery(query, SearchResult.class).build();
+                adapter = new FirebaseRecyclerAdapter<SearchResult, firstFragment.SearchViewHolder>(firebaseRecyclerOptions) {
+
+                    @NonNull
+                    @Override
+                    public firstFragment.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        Log.i("info","inside search");
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.list_layout, parent, false);
+
+                        return new firstFragment.SearchViewHolder(view);
+                    }
+
+                    @Override
+                    protected void onBindViewHolder(@NonNull firstFragment.SearchViewHolder holder, int position, @NonNull SearchResult model) {
+                        Log.i("info","in adapter");
+                        holder.setDefault(model.getRecipe_name(),model.getIngredients(),model.getInstructions());
+                    }
+                };
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 adapter.startListening();
 
             }

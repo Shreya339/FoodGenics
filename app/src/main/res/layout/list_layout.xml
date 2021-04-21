@@ -15,17 +15,22 @@
         android:id="@+id/res_name"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_alignEnd="@id/ingred"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="20dp"
-        android:layout_alignBottom="@id/ingred"
-        android:text="recipe name" />
+
+        android:text="recipe name"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/instruct"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_alignEnd="@id/res_name"
+        android:layout_alignParentTop="true"
         android:layout_marginBottom="20dp"
-        android:layout_alignBottom="@id/res_name"
-        android:text="instructions"/>
+        android:text="instructions"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

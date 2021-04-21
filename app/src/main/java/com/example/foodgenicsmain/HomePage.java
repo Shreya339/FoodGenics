@@ -56,6 +56,10 @@ public class HomePage extends AppCompatActivity {
                         Intent intent = new Intent(HomePage.this,HomePage.class);
                         startActivity(intent);
                         break;
+                    case R.id.nav_search_alt:
+                        Intent intent1 = new Intent(HomePage.this,SearchAlternative.class);
+                        startActivity(intent1);
+                        break;
                     case R.id.nav_set:
                         Toast.makeText(HomePage.this,"yeah this is settings",Toast.LENGTH_LONG).show();
                         break;

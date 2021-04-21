@@ -13,6 +13,9 @@ public class SearchResult {
         this.recipe_name = recipe_name;
         this.ingredients = instructions;
     }
+    public SearchResult(String ingredients){
+        this.ingredients = ingredients;
+    }
 
     public String getIngredients() {
         return ingredients;
