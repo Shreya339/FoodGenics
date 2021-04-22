@@ -33,8 +33,8 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
         ViewHolder(View itemView) {
             super(itemView);
             ingred = itemView.findViewById(R.id.ingred);
-            respi = itemView.findViewById(R.id.res_name);
-            instr = itemView.findViewById(R.id.instruct);
+            instr = itemView.findViewById(R.id.res_name);
+            respi = itemView.findViewById(R.id.instruct);
         }
     }
     SearchAltAdapter(List<SearchResult> exampleList) {
