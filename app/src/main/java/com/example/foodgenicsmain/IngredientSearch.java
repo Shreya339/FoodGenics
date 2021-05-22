@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchAlternative extends AppCompatActivity {
+public class IngredientSearch extends AppCompatActivity {
 
     private SearchAltAdapter adapter;
     private List<SearchResult> exampleList=new ArrayList<>();
@@ -39,16 +39,19 @@ public class SearchAlternative extends AppCompatActivity {
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main_menu, menu);
-        MenuItem menuItem = menu.findItem(R.id.search_questions);
+        MenuItem menuItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                Log.i("onQueryTextSubmit ", s);
+                adapter.getFilter().filter(s);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                Log.i("onQueryTextChange ", s);
                 adapter.getFilter().filter(s);
                 return false;
             }
@@ -65,13 +68,15 @@ public class SearchAlternative extends AppCompatActivity {
                     String ing = ds.child("ingredients").getValue().toString();
                     String titl = ds.child("title").getValue().toString();
                     String inst = ds.child("instructions").getValue().toString();
-                    item = new SearchResult(ing,inst,titl);
+                    String p_l = ds.child("picture_link").getValue().toString();
+                    item = new SearchResult(ing,inst,titl,p_l);
+
                     exampleList.add(item);
                 }
                 RecyclerView recyclerView = findViewById(R.id.recyclerView);
                 recyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchAlternative.this);
-                adapter = new SearchAltAdapter(exampleList);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(IngredientSearch.this);
+                adapter = new SearchAltAdapter(exampleList,getApplicationContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
 

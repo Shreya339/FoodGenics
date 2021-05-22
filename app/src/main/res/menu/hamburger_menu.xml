@@ -6,8 +6,11 @@
         <item android:id="@+id/nav_home"
             android:title="Home">
         </item>
-        <item android:id="@+id/nav_search_alt"
-            android:title="Search">
+        <item android:id="@+id/nav_search_ingred"
+            android:title="Search Ingredients">
+        </item>
+        <item android:id="@+id/nav_search_recipe"
+            android:title="Search Recipes">
         </item>
     </group>
     <group android:checkableBehavior="single"

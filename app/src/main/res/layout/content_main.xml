@@ -22,50 +22,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="#87be56"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingredients" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recipe" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diet Planner" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="409dp"
-        android:layout_height="625dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
+    <com.smarteist.autoimageslider.SliderView
+        android:id="@+id/slider"
+        android:layout_width="410dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorEnabled="true"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorSelectedColor="#5A5A5A"
+        app:sliderIndicatorUnselectedColor="#FFF"
+        app:sliderScrollTimeInSec="1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

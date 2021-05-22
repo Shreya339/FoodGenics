@@ -5,19 +5,18 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.smarteist.autoimageslider.SliderView;
+
+import java.util.ArrayList;
 
 
 public class HomePage extends AppCompatActivity {
@@ -25,28 +24,24 @@ public class HomePage extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
-    ViewPager viewPager2;
-    TabLayout tabLayout;
-    TabItem firsttabItem, secondtabItem, thirdtabItem;
-    PagerAdapter adapter;
     FirebaseAuth auth;
+
+    int url1 = R.drawable.ingrdients;
+    int url2= R.drawable.re;
+    int url3= R.drawable.caloriebar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        viewPager2 = findViewById(R.id.viewPager);
-        firsttabItem = findViewById(R.id.tab_1);
-        secondtabItem = findViewById(R.id.tab_2);
-        thirdtabItem = findViewById(R.id.tab_3);
-        tabLayout = findViewById(R.id.tabLayout);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout= findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigation_view);
+
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -55,10 +50,15 @@ public class HomePage extends AppCompatActivity {
                     case R.id.nav_home:
                         Intent intent = new Intent(HomePage.this,HomePage.class);
                         startActivity(intent);
+                        finish();
                         break;
-                    case R.id.nav_search_alt:
-                        Intent intent1 = new Intent(HomePage.this,SearchAlternative.class);
+                    case R.id.nav_search_ingred:
+                        Intent intent1 = new Intent(HomePage.this, IngredientSearch.class);
                         startActivity(intent1);
+                        break;
+                    case R.id.nav_search_recipe:
+                        Intent intent2 = new Intent(HomePage.this,RecipeSearch.class);
+                        startActivity(intent2);
                         break;
                     case R.id.nav_set:
                         Toast.makeText(HomePage.this,"yeah this is settings",Toast.LENGTH_LONG).show();
@@ -76,31 +76,27 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+
+        SliderView sliderView = findViewById(R.id.slider);
+
+        sliderDataArrayList.add(new SliderData(url1));
+        sliderDataArrayList.add(new SliderData(url2));
+        sliderDataArrayList.add(new SliderData(url3));
+
+        SliderAdapter adapter = new SliderAdapter(this, sliderDataArrayList);
+        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+
+        sliderView.setSliderAdapter(adapter);
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+        sliderView.startAutoCycle();
+
         toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-        adapter = new PagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, tabLayout.getTabCount());
-        viewPager2.setAdapter(adapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewPager2.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     public void logOut(){

@@ -1,19 +1,28 @@
 package com.example.foodgenicsmain;
 
-import android.util.Log;
+import java.io.Serializable;
 
-public class SearchResult {
+public class SearchResult implements Serializable {
 
-    String ingredients, title, instructions;
+    String ingredients, title, instructions, picture_link;
 
     public SearchResult(){
 
     }
 
-    public SearchResult( String ingredients, String instructions, String title){
+    public SearchResult( String ingredients, String instructions, String title, String picture_link){
         this.ingredients = ingredients;
-        this.ingredients = instructions;
+        this.instructions = instructions;
         this.title = title;
+        this.picture_link = picture_link;
+    }
+
+    public String getPicture_link() {
+        return picture_link;
+    }
+
+    public void setPicture_link(String picture_link) {
+        this.picture_link = picture_link;
     }
 
     public String getIngredients() {
@@ -21,7 +30,6 @@ public class SearchResult {
     }
 
     public void setIngredients(String ingredients) {
-        Log.i("in search result",instructions+" ");
         this.ingredients = ingredients;
     }
 
