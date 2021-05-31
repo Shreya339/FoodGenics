@@ -3,7 +3,6 @@ This is a Recipe Reccomender and Diet Planner Android Application
 ------------------------------------------------
 Major Software used - Android Studio, Firebase
 Dataset Size - 106085
-
 Allows user to search recipe using Recipe names - Recipe Search
 Allows user to search recipes using multiple ingredients - Ingreadient Search
 Allows user to plan his/her food intake for the day and the week - Diet Planner
