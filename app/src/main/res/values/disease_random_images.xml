@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="disease_images_array">
+        <item>@drawable/apple</item>
+        <item>@drawable/pineapple</item>
+        <item>@drawable/strawberry</item>
+        <item>@drawable/mango</item>
+        <item>@drawable/blueberry</item>
+        <item>@drawable/egg</item>
+    </array>
+</resources>

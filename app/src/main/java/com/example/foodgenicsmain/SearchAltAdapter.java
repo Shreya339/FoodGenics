@@ -37,6 +37,7 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
         return examplefilter;
     }
 
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView ingred, respi, instr;
@@ -63,9 +64,7 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         currentItem = exampleList.get(position);
-        //holder.ingred.setText(currentItem.getIngredients());
         holder.respi.setText(currentItem.getTitle());
-        //holder.instr.setText(currentItem.getInstructions());
         Picasso.with(context).load(currentItem.getPicture_link()).into(holder.p_l);
         holder.p_l.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,52 +75,17 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
             }
         });
 
-        //Log.i("instr ",currentItem.getInstructions()+" ");
     }
     @Override
     public int getItemCount() {
         Log.i("in get count ", String.valueOf(exampleList.size()));
         return exampleList.size();
     }
+
     //logic for searching ingredients
     private Filter examplefilter= new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            /*List<SearchResult> filterlist=new ArrayList<>();
-            if(constraint==null|| constraint.length()==0){
-                filterlist.addAll(exampleListFull);
-            }
-            else{
-                pattrn=constraint.toString().toLowerCase().trim();
-                for(SearchResult item :exampleListFull){
-                    //where search takes place
-                    if(item.getIngredients().toLowerCase().contains(pattrn)){
-                        filterlist.add(item);
-                    }
-                }*/
-
-
-//https://stackoverflow.com/questions/9148899/returning-value-from-thread/9148992 refer for thread
-               /*Thread t1 = new Thread(new ParallelExecution(exampleList,pattrn,"1"));
-               Thread t2 = new Thread(new ParallelExecution(exampleList,pattrn,"2"));
-
-               t1.start();
-               t2.start();
-
-                try {
-                    t1.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    t2.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Log.i("Thread completion "," ");*/
-
-            //}
             Log.i("in filter "," filterrrrr");
             String[] constraint_s = constraint.toString().split(",");
 
@@ -146,7 +110,6 @@ public class SearchAltAdapter extends RecyclerView.Adapter<SearchAltAdapter.View
             for(int i=1;i<constraint_s.length;i++){
 
                 try {
-                    //filterResults.values = parallel_tasks[i].get();
                     tempList.retainAll((List<SearchResult>) parallel_tasks[i].get());
                 } catch (ExecutionException e) {
                     e.printStackTrace();

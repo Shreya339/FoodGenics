@@ -3,12 +3,22 @@ package com.example.foodgenicsmain;
 public class User {
 
         public String username,email,disease;
+        public int profile_img_id;
 
-        public User(String username, String email, String disease) {
+        public User(String username, String email, String disease,int profile_img_id) {
             this.username = username;
             this.email = email;
             this.disease = disease;
+            this.profile_img_id = profile_img_id;
         }
+
+    public int getProfile_img_id() {
+        return profile_img_id;
+    }
+
+    public void setProfile_img_id(int profile_img_id) {
+        this.profile_img_id = profile_img_id;
+    }
 
     public String getUsername() {
         return username;

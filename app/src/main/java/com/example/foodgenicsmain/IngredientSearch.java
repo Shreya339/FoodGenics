@@ -1,6 +1,7 @@
 package com.example.foodgenicsmain;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +33,10 @@ public class IngredientSearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_alternative);
+        setContentView(R.layout.activity_search_ingredient);
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle("Search with Ingredients");
         fillExampleList();
     }
     @Override
@@ -69,7 +73,12 @@ public class IngredientSearch extends AppCompatActivity {
                     String titl = ds.child("title").getValue().toString();
                     String inst = ds.child("instructions").getValue().toString();
                     String p_l = ds.child("picture_link").getValue().toString();
-                    item = new SearchResult(ing,inst,titl,p_l);
+                    String recipe_id = ds.getKey();
+                    int call = Integer.parseInt(ds.child("cal").getValue().toString());
+                    int proo = Integer.parseInt(ds.child("pro").getValue().toString());
+                    int fatt = Integer.parseInt(ds.child("fat").getValue().toString());
+                    int carbs = Integer.parseInt(ds.child("carbs").getValue().toString());
+                    item = new SearchResult(ing,inst,titl,p_l,recipe_id,call,proo,fatt,carbs);
 
                     exampleList.add(item);
                 }

@@ -1,6 +1,7 @@
 package com.example.foodgenicsmain;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,13 +27,18 @@ public class RecipeSearch extends AppCompatActivity {
     private SearchAltAdapter2 adapter2;
     private List<SearchResult> recipeList =new ArrayList<>();
     SearchResult item;
+    int cal,pro,fat,carbs;
 
-    DatabaseReference fb= FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Database");
+
+    DatabaseReference fb = FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Database");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_search);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Search Recipes");
         fillRecipeList();
     }
     @Override
@@ -66,7 +72,12 @@ public class RecipeSearch extends AppCompatActivity {
                     String titl = ds.child("title").getValue().toString();
                     String inst = ds.child("instructions").getValue().toString();
                     String picture_link = ds.child("picture_link").getValue().toString();
-                    item = new SearchResult(ing,inst,titl,picture_link);
+                    String recipe_id = ds.getKey();
+                    int call = Integer.parseInt(ds.child("cal").getValue().toString());
+                    int proo = Integer.parseInt(ds.child("pro").getValue().toString());
+                    int fatt = Integer.parseInt(ds.child("fat").getValue().toString());
+                    int carbs = Integer.parseInt(ds.child("carbs").getValue().toString());
+                    item = new SearchResult(ing,inst,titl,picture_link,recipe_id,call,proo,fatt,carbs);
 
                     Log.i("after setting ingred",item.getIngredients()+" ");
                     Log.i("after setting instr",item.getInstructions()+" ");

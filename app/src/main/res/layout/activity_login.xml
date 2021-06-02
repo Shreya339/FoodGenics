@@ -6,20 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rlHeader"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="153dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/without_bg_logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/logo1" />
-    </RelativeLayout>
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/allura"
+            android:text="@string/app_name"
+            android:textSize="50dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="Stay Healthy.!.Eat Tasty"
+            android:gravity="center"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="220dp"

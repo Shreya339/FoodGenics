@@ -3,30 +3,40 @@
     package="com.example.foodgenicsmain">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name='android.permission.ACCESS_NETWORK_STATE' />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/without_bg_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayRecipe"></activity>
+        <activity android:name=".CalorieInfo"></activity>
+        <activity android:name=".AddPlan" />
+        <activity android:name=".DietPlanner" />
+        <activity android:name=".ProfileData" />
+        <activity android:name=".DisplayRecipe" />
         <activity android:name=".RecipeSearch" />
-        <activity android:name=".SearchAltAdapter" />
         <activity android:name=".IngredientSearch" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity
             android:name=".HomePage"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

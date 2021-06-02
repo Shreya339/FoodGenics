@@ -33,12 +33,10 @@ public class SearchAltAdapter2 extends RecyclerView.Adapter<SearchAltAdapter2.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ingred, respi, instr;
+        TextView  respi;
         ImageView p_l;
         ViewHolder(View itemView) {
             super(itemView);
-            //instr = itemView.findViewById(R.id.ingred);
-            //ingred = itemView.findViewById(R.id.res_name);
             respi = itemView.findViewById(R.id.instruct);
             p_l = itemView.findViewById(R.id.img_resp);
         }
@@ -57,9 +55,7 @@ public class SearchAltAdapter2 extends RecyclerView.Adapter<SearchAltAdapter2.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         currentItem = recipeList.get(position);
-        //holder.ingred.setText(currentItem.getIngredients());
         holder.respi.setText(currentItem.getTitle());
-        //holder.instr.setText(currentItem.getInstructions());
         Picasso.with(context).load(currentItem.getPicture_link()).into(holder.p_l);
        holder.p_l.setOnClickListener(new View.OnClickListener() {
             @Override

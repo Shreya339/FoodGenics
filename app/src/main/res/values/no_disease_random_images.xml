@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="no_disease_array">
+        <item>@drawable/pizza</item>
+        <item>@drawable/burger</item>
+        <item>@drawable/hotdog</item>
+        <item>@drawable/icecream</item>
+        <item>@drawable/donut</item>
+        <item>@drawable/apple</item>
+        <item>@drawable/pineapple</item>
+        <item>@drawable/strawberry</item>
+        <item>@drawable/mango</item>
+        <item>@drawable/blueberry</item>
+        <item>@drawable/egg</item>
+    </array>
+</resources>

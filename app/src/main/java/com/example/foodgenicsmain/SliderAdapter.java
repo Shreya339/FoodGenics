@@ -57,7 +57,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
                     Intent intent = new Intent(context,RecipeSearch.class);
                     context.startActivity(intent);
                 }else{
-                    Intent intent = new Intent(context,IngredientSearch.class);
+                    Intent intent = new Intent(context,DietPlanner.class);
                     context.startActivity(intent);
                 }
             }

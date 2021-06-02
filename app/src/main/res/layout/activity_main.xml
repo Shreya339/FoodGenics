@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#E4507859"
+    android:orientation="vertical"
+    android:gravity="center">
+
 
     <ImageView
-        android:id="@+id/logo"
-        android:layout_width="367dp"
-        android:layout_height="151dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:src="@drawable/logo1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:layout_gravity="center"
+        android:src="@drawable/without_bg_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/allura"
+        android:text="Foodgenics"
+        android:textColor="@color/white"
+        android:textSize="70dp"
+        android:textStyle="bold"
+        android:id="@+id/app_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stay Healthy.!.Eat Tasty"
+        android:gravity="center"
+        android:fontFamily="arial"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/app_slogan"/>
+
+</LinearLayout>

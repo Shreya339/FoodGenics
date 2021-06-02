@@ -3,6 +3,11 @@ package com.example.foodgenicsmain;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +27,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Random;
+
 
 public class Register extends AppCompatActivity {
 
@@ -31,6 +42,7 @@ public class Register extends AppCompatActivity {
     private String username,email,password,confirmpassword,disease;
     private Spinner e_disease;
     private Button signin_button;
+    private int profile_img_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +57,6 @@ public class Register extends AppCompatActivity {
         e_disease = findViewById(R.id.disease_spinner);
         signin_button = findViewById(R.id.signin_b);
 
-
-        e_disease.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Register.this,parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         try {
             this.getSupportActionBar().hide();
@@ -80,7 +81,7 @@ public class Register extends AppCompatActivity {
 
         public void registerUser(){
 
-            Toast.makeText(Register.this,"entered reg user",Toast.LENGTH_LONG).show();
+            //Toast.makeText(Register.this,"entered reg user",Toast.LENGTH_LONG).show();
 
             email = e_email.getText().toString().trim();
             password = e_password.getText().toString().trim();
@@ -100,21 +101,34 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.i("in success auth-","success");
-                                    //store in db
-                                    User usr = new User(username,email,disease);
-                                    Log.i("test :-","after user");
+
+                                    if(!disease.equals("None")){
+                                        final TypedArray imgs = getResources().obtainTypedArray(R.array.no_disease_array);
+                                        final Random rand = new Random();
+                                        final int rndInt = rand.nextInt(imgs.length());
+                                        profile_img_id = imgs.getResourceId(rndInt, 0);
+
+                                    }else{
+                                        final TypedArray imgs = getResources().obtainTypedArray(R.array.disease_images_array);
+                                        final Random rand = new Random();
+                                        final int rndInt = rand.nextInt(imgs.length());
+                                        profile_img_id = imgs.getResourceId(rndInt, 0);
+                                    }
+
+                                    User usr = new User(username,email,disease,profile_img_id);
+
                                     FirebaseDatabase.getInstance("https://foodgenics-8973c-default-rtdb.firebaseio.com").getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .setValue(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                Log.i("in success db-","success");
+                                                //Log.i("in success db-","success");
                                                 Toast.makeText(Register.this, "registration successful", Toast.LENGTH_LONG).show();
-                                                Log.d("success:- ", "createUserWithEmail:success");
+                                                //Log.d("success:- ", "createUserWithEmail:success");
                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                 Intent intent = new Intent(Register.this, HomePage.class);
                                                 startActivity(intent);
+                                                finish();
                                             } else {
                                                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                                 firebaseUser.delete();
@@ -132,6 +146,7 @@ public class Register extends AppCompatActivity {
                                 });
             }
         }
+
 
 
     }
